@@ -1,19 +1,33 @@
 <?php
 require "dbFonction.php";
-function getCategory(){
+function getCategory()
+{
     $bdd = bdd();
-    $sql = "SELECT categoryId, typeProduct FROM category";
-    $stmt = $bdd->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    try {
+        $sql = "SELECT categoryId, typeProduct FROM category";
+        $stmt = $bdd->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        echo $e->getLine();
+        exit();
+    }
     return $result;
 };
 
-function addCategory($string){
+function addCategory($string)
+{
     $bdd = bdd();
-    $sql = "INSERT INTO category(typeProduct) VALUES(?)";
-    $stmt = $bdd->prepare($sql);
-    $stmt->execute([$string]);
+    try {
+        $sql = "INSERT INTO category(typeProduct) VALUES(?)";
+        $stmt = $bdd->prepare($sql);
+        $stmt->execute([$string]);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        echo $e->getLine();
+        exit();
+    }
     header("Location: ../../../src/pages/adminContent/categorieProduit.php");
     exit();
 };

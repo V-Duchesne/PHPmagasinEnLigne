@@ -14,8 +14,8 @@
           <?php } ?>
         </li>
         <li class="nav-item">
-        <?php if (isset($_SESSION["connected"])) { ?>
-          <a class="nav-link" href="../../../src/pages/admin.php"><i class="fas fa-shield-alt me-2"></i></i>admin</a>
+        <?php if (isset($_SESSION["ID"]) && $_SESSION["ID"] == "1") { ?>
+          <a class="nav-link" href="../../src/pages/admin.php"><i class="fas fa-shield-alt me-2"></i></i>admin</a>
           <?php } ?>
         </li>
         <li class="nav-item">
