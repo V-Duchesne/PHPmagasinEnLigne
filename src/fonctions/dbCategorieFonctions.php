@@ -31,3 +31,19 @@ function addCategory($string)
     header("Location: ../../../src/pages/adminContent/categorieProduit.php");
     exit();
 };
+
+function getCategoryById($id)
+{
+    $bdd = bdd();
+    try {
+        $sql = "SELECT typeProduct FROM category WHERE categoryId = ?";
+        $stmt = $bdd->prepare($sql);
+        $stmt->execute([$id]);
+        $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        echo $e->getLine();
+        exit();
+    }
+    return $result;
+};

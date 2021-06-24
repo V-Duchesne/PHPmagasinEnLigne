@@ -32,7 +32,7 @@ $key = rand();
         } 
         ?>
         <p class="text-center">Enregistrez-vous</p>
-        <form method="POST" action="../../src/pages/register.php">
+        <form method="POST" action="">
             <div class="row g-3 align-items-center mb-3">
                 <div class="col-3">
                     <label for="login" class="col-form-label">Login</label>
@@ -73,13 +73,11 @@ $key = rand();
                     $mdpCrypt = crypt($pass, $key);
                 }
             }
+            if (isset($mdpCrypt)) {
+                createUser($login, $mail, $mdpCrypt, $key);
+            };
             ?>
             <button type="submit" class="btn btn-primary col-11">Submit</button>
         </form>
     </div>
 </section>
-<?php
-if (isset($mdpCrypt)) {
-    createUser($login, $mail, $mdpCrypt, $key);
-};
-?>

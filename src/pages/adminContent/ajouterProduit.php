@@ -1,4 +1,5 @@
 <?php
+$titre = "Ajout produit";
 require "../../fonctions/dbCategorieFonctions.php";
 require "../../fonctions/dbProduitFonctions.php";
 require "../../fonctions/mesFonctions.php";

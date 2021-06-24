@@ -1,4 +1,5 @@
 <?php
+$titre = "Ajout catégorie";
 require "../../fonctions/dbCategorieFonctions.php";
 require "../../../src/common/template.php";
 require "../../../src/common/footer.php";

@@ -1,3 +1,8 @@
+<?php
+if (isset($_SESSION["userID"])) {
+  $resultb = getTotalBasketAmount($_SESSION['userID']);
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-light navColor">
   <div class="container-fluid">
     <a class="navbar-brand" href="../../../index.php"><img src="../../../src/img/E.gif" alt="logo" class="w-25 ms-5"></a>
@@ -14,19 +19,29 @@
           <?php } ?>
         </li>
         <li class="nav-item">
-        <?php if (isset($_SESSION["ID"]) && $_SESSION["ID"] == "1") { ?>
-          <a class="nav-link" href="../../src/pages/admin.php"><i class="fas fa-shield-alt me-2"></i></i>admin</a>
+          <?php if (isset($_SESSION["ID"]) && $_SESSION["ID"] == "1") { ?>
+            <a class="nav-link" href="../../src/pages/admin.php"><i class="fas fa-shield-alt me-2"></i></i>admin</a>
           <?php } ?>
         </li>
         <li class="nav-item">
-        <?php if (isset($_SESSION["connected"])) { ?>
-          <a class="nav-link" href="../../src/pages/disconnect.php"><i class="fas fa-sign-out-alt me-2"></i>Déconnection</a>
+          <?php if (isset($_SESSION["connected"])) { ?>
+            <a class="nav-link" href="../../src/pages/disconnect.php"><i class="fas fa-sign-out-alt me-2"></i>Déconnection</a>
           <?php } else { ?>
             <a class="nav-link" href="../../src/pages/register.php"><i class="fas fa-bullseye me-2"></i>s'enregistrer</a>
           <?php } ?>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fas fa-shopping-basket me-2"></i>panier</a>
+          <?php
+          if (isset($resultb)) {
+            foreach ($resultb as $basketAmount) :
+              $basketA = $basketAmount;
+            endforeach;
+          } else {
+            $basketA = "0";
+          }
+          ?>
+          <a class="nav-link" href="../../src/pages/basket.php"><i class="fas fa-shopping-basket me-2"></i>panier (<?php echo $basketA ?>)</a>
+
         </li>
       </ul>
     </div>

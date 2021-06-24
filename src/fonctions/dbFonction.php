@@ -28,7 +28,7 @@ function getUserByLogin($login, $pass)
 {
     $bdd = bdd();
     try {
-        $connect = $bdd->prepare('SELECT login, password, ban, roleId FROM users WHERE login = ?');
+        $connect = $bdd->prepare('SELECT login, password, ban, roleId, userId FROM users WHERE login = ?');
         $connect->execute([$login]);
         while ($result = $connect->fetch()) {
             if ($result["login"] == $login) {
@@ -37,7 +37,8 @@ function getUserByLogin($login, $pass)
                     $_SESSION["login"] = $result["login"];
                     $_SESSION["ID"] = $result["roleId"];
                     $_SESSION["connected"] = "true";
-                    header("Location:  ../../src/pages/login.php?error=false&message=Vous êtes connecté");
+                    $_SESSION["userID"] = $result["userId"];
+                    header("Location:  ../../index.php");
                     exit();
                 } else {
                     header("Location:  ../../src/pages/login.php?error=true&message=Mot de passe incorrect");

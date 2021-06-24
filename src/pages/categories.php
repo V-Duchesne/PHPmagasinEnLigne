@@ -1,14 +1,18 @@
 <?php
-require "../../src/fonctions/dbCategorieFonctions.php";
-require "../../src/fonctions/dbProduitFonctions.php";
-require "../../src/common/template.php";
-require "../../src/common/listCategorie.php";
-require "../../src/common/footer.php";
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 } else {
     $id = null;
 }
+require "../../src/fonctions/dbCategorieFonctions.php";
+require "../../src/fonctions/dbProduitFonctions.php";
+$title = getCategoryById($id);
+foreach($title as $catTitle) :
+    $titre = $catTitle->typeProduct;
+endforeach;
+require "../../src/common/template.php";
+require "../../src/common/listCategorie.php";
+require "../../src/common/footer.php";
 $result = getProduct($id);
 ?>
 <div class="d-inline-block mt-5 col-9">

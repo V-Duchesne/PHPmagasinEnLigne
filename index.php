@@ -1,5 +1,5 @@
 <?php 
-    $titre = "test";
+    $titre = "MagEnLigne";
     require "./src/fonctions/dbCategorieFonctions.php";
 require "./src/fonctions/dbProduitFonctions.php";
     require "./src/common/template.php"; 
